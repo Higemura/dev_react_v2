@@ -1,9 +1,6 @@
-// JSXを使用する場合はimport Reactが必須（使わなければ必要ない）
-// {Component} はクラスコンポーネントを使用すると胃に必須。class App extends Component
-// import React, { Component } from 'react';
-
 // クラスコンポーネントを使わなければ { Component } はいらない（使われてないのに指定しているとエラーが出る）
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // const App は関数コンポーネント
 const App = () => {
@@ -42,8 +39,16 @@ const User = (props) => {
 }
 
 // Propsのデフォルト値を設定（Propsに値がなかった時などはここから取得させる）
-User.defaultProps = {
-  age: 1
+// User.defaultProps = {
+//   age: 1
+// }
+
+// propsの型を指定する
+User.propTypes = {
+  // stringで文字列にできる（nameに数字などが入るとエラーを出す）
+  name: PropTypes.string,
+  // numberで数字にできる（ageに文字列などが入るとエラーを出す）
+  age: PropTypes.number.isRequired // isRequiredでageを必須に設定できる（ageが存在しないとWarning Errorが出る）
 }
 
 export default App;
